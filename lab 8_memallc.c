@@ -2,7 +2,7 @@
 
 void main()
 {
-	int i,j,p,m,ch,a,k;
+	int i,j,p,m,ch,a,k,cnt;
 	int flag=0,bst=0,wst=0,frag=0,total=0;
 
 	printf("\n Enter the number of processes ");
@@ -34,7 +34,8 @@ void main()
 	printf("\n 1.First Fit");
 	printf("\n 2.Best Fit");
 	printf("\n 3.Worst Fit");
-	printf("\n 4.Quit \n");
+	printf("\n 4.Next Fit");
+	printf("\n 5.Quit \n");
 	scanf("%d",&ch);
 		
 	switch(ch)
@@ -57,6 +58,7 @@ void main()
 			if(flag==1)
 			printf("\nProcess %d is allocated to memory block %d",i,j);
 		}
+		
 		
 		//best fit//
 		case 2:
@@ -127,8 +129,37 @@ void main()
 		
 		}
 		
-			
+		
+		//next fit//
 		case 4:
+		for( i=0 ; i<p ; i++)
+		{
+		k=0;		
+		flag=0;
+			for( j=k, cnt=0 ; cnt<m ; j++, cnt++)
+			{
+			if( j==m )
+				j=0;
+				
+			if( memr[j] >= prc[i])
+			{
+				memr[j]=memr[j]-prc[i];
+				flag=1;
+				k=j;	
+			}
+			if(flag == 1)
+			{
+				printf("\nProcess %d allocated in mem block %d", i, j);
+				break;
+			}
+			else
+				printf("\nProcess %d cannot be allocated.",i);
+			}	
+		
+		}
+			
+		//exit case//
+		case 5:
 		return 0;
 			
 		default:
